@@ -7,7 +7,7 @@ import _ from 'lodash';
 import { ticketStatusLUT } from '../constants';
 
 // Utils
-import { formatDate, formatTicketTitle } from '../utils/format';
+import { formatDate } from '../utils/format';
 
 export class Ticket extends React.Component {
   constructor (props) {
