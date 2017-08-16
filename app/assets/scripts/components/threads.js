@@ -19,6 +19,7 @@ class Threads extends React.Component {
     }
   }
 
+
   render () {
     // These will not exist for users who aren't authorized to view them
     const note = this.props.threads.find(t => t.type === 'note');
