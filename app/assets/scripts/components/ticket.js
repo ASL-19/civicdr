@@ -35,7 +35,7 @@ export class Ticket extends React.Component {
         </label>
         <Link to={`/tickets/${ticketId}`} className={'card__content' + (ticket.notify ? ` card__content--${ticket.status}` : '')}>
           <div className='card__body'>
-            <h1 className='card__title heading--small'>Ticket {formatTicketTitle(ticketId)}</h1>
+        <h1 className='card__title heading--small'>{ticket.title} - {ticket.ticket_ip_name}</h1>
             <p className='card__description'>created on {formatDate(ticket.created_at)} by {ticket.created_by}</p>
           </div>
           <div className='card__meta'>
