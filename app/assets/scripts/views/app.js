@@ -58,7 +58,7 @@ var App = React.createClass({
             onClose={() => {
               this.props.dispatch(removeErrors());
             }}
-            error={this.props.error.errorMsg}
+            errorMsg={this.props.error.errorMsg}
         />
         </div>
           {this.props.children}
