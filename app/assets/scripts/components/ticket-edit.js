@@ -102,6 +102,23 @@ const TicketEdit = React.createClass({
               : ''
             }
 
+            {isAdmin
+              ? <div className='form__group'>
+                  <label className='form__label-dark' htmlFor='form-ticket_title'>Title</label>
+                  <p className='form__help'>A short title that describes your incident.</p>
+                  <input
+                    type='text'
+                    id='form-ticket_title'
+                    required={true}
+                    className='form__control form__control--medium'
+                    name='title'
+                    ref={thisInput => { this.title = thisInput; }}
+                  defaultValue={this.props.existingTicket.title}
+                />
+              </div>
+              : ''
+            }
+
           {isAdmin || isIP
             ? <div className='form__row'>
               <div className='form__group'>
