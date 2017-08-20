@@ -162,7 +162,7 @@ const TicketEdit = React.createClass({
               : ''
             }
 
-            { (isAdmin || isSP) && (this.props.existingTicket.sp_assigned_id !== '')
+            { (isAdmin || isSP) && this.props.existingTicket.sp_assigned_id
               ? <div className='form__row'>
                 <div className='form__group'>
                   <label className='form__label-dark' htmlFor='form-ticket_sp_name'>Service Provider Name for This Ticket</label>
