@@ -221,24 +221,23 @@ export const updateTicketSP = (serviceProviderInfo) => {
 };
 
 export const assignSPToTicket = (ticketID, serviceProviderID) => {
-  let ticket;
   return dispatch => {
     // Get currently-assigned SP ID, if there is one
     request(`/tickets/${ticketID}`, 'get')
       .then(res => {
-        ticket = res.data;
         const existingSPID = res.data.sp_assigned_id;
         return existingSPID
           ? request(`/tickets/${ticketID}/sp_profiles/${existingSPID}`, 'delete')
           : Promise.resolve(null);
       })
       .then(() => request(`/tickets/${ticketID}/sp_profiles/${serviceProviderID}`, 'post'))
+      .then(() => request(`/tickets/${ticketID}`, 'get'))
       // Update the store
-      .then(() => {
+      .then(res => {
         dispatch(updateTicketSP({
-          sp_assigned_id: ticket.sp_assigned_id,
-          ticket_sp_contact: ticket.ticket_sp_contact,
-          ticket_sp_name: ticket.ticket_sp_name}));
+          sp_assigned_id: res.data.sp_assigned_id,
+          ticket_sp_contact: res.data.ticket_sp_contact,
+          ticket_sp_name: res.data.ticket_sp_name}));
         dispatch(fetchTicketThreads(ticketID));
       })
       .catch(function (err) { dispatch(checkErrors(err)); });
