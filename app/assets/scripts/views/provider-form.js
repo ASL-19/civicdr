@@ -263,6 +263,7 @@ var ProviderForm = React.createClass({
                         required={true}
                         name='rating'
                         value={rating}
+                        defaultChecked={rating === 3}
                       />
                       <span className='form__option__text'>{rating}</span>
                       <span className="form__option__ui"></span>
