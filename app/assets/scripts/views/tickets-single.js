@@ -88,7 +88,6 @@ var TicketSingle = React.createClass({
 
   render: function () {
     const ticket = this.props.ticket;
-    const isAssignedSP = Boolean(ticket.sp_assigned_id);
     const hasProfile = Boolean(this.props.profile.name);
     const serviceProvider = this.props.serviceProviders
       .find(sp => sp.id === ticket.sp_assigned_id);
@@ -192,7 +191,7 @@ var TicketSingle = React.createClass({
                 <h2 className='field__title'>IP Contact Address</h2>
                 <p className='field__description'>{ticket.ticket_ip_contact}</p>
               </div>
-              { isAssignedSP
+              { ticket.sp_assigned_id
                 ? <div className='profile-fields'>
                   <h2 className='field__title'>SP Contact Name</h2>
                   { isAdmin
@@ -201,7 +200,7 @@ var TicketSingle = React.createClass({
                   }</div>
                 : ''
               }
-              { isAssignedSP
+              { ticket.sp_assigned_id
                 ? <div className='profile-fields'>
                   <h2 className='field__title'>SP Contact Address</h2>
                   <p className='field__description'>{ticket.ticket_sp_contact}</p>
