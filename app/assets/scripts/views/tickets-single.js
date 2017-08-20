@@ -88,6 +88,7 @@ var TicketSingle = React.createClass({
 
   render: function () {
     const ticket = this.props.ticket;
+    const isAssignedSP = Boolean(ticket.sp_assigned_id);
     const hasProfile = Boolean(this.props.profile.name);
     const serviceProvider = this.props.serviceProviders
       .find(sp => sp.id === ticket.sp_assigned_id);
@@ -134,7 +135,7 @@ var TicketSingle = React.createClass({
                     this.props.dispatch(createGroupingAndAddToTicket(title, description, this.props.ticket.id));
                     this.setState({isCreateGroupingModalVisible: false});
                   }}
-                  />
+                />
               </div>
 
               <div style={{display: this.state.isDeleteModalVisible ? 'block' : 'none'}}>
@@ -191,16 +192,22 @@ var TicketSingle = React.createClass({
                 <h2 className='field__title'>IP Contact Address</h2>
                 <p className='field__description'>{ticket.ticket_ip_contact}</p>
               </div>
-              <div className='profile-fields'>
-                <h2 className='field__title'>SP Contact Name</h2>
-                { isAdmin
-                  ? <p className='field__description'><Link className='link--deco' to={`/service-providers/${ticket.sp_assigned_id}`}>{ticket.ticket_sp_name}</Link></p>
-                  : <p className='field__description'>{ticket.ticket_ip_name}</p>
-                }</div>
-              <div className='profile-fields'>
-                <h2 className='field__title'>SP Contact Address</h2>
-                <p className='field__description'>{ticket.ticket_sp_contact}</p>
-              </div>
+              { isAssignedSP
+                ? <div className='profile-fields'>
+                  <h2 className='field__title'>SP Contact Name</h2>
+                  { isAdmin
+                    ? <p className='field__description'><Link className='link--deco' to={`/service-providers/${ticket.sp_assigned_id}`}>{ticket.ticket_sp_name}</Link></p>
+                    : <p className='field__description'>{ticket.ticket_ip_name}</p>
+                  }</div>
+                : ''
+              }
+              { isAssignedSP
+                ? <div className='profile-fields'>
+                  <h2 className='field__title'>SP Contact Address</h2>
+                  <p className='field__description'>{ticket.ticket_sp_contact}</p>
+                </div>
+                : ''
+              }
               <div className='profile-fields'>
                 <h2 className='field__title'>Date of Incident</h2>
                 <p className='field__description'>{ticket.date_of_incident ? ticket.date_of_incident.substring(0, 10) : ''}</p>
