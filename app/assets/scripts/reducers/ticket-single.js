@@ -1,7 +1,7 @@
 'use strict';
 
 import clonedeep from 'lodash.clonedeep';
-import { del } from 'object-path';
+
 import {
   GET_TICKET_SINGLE,
   UPDATE_TICKET_SP,
