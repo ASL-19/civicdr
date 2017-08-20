@@ -14,7 +14,8 @@ const TicketEdit = React.createClass({
     existingTicket: T.object,
     roles: T.array,
     implementingPartners: T.array,
-    router: T.object
+    router: T.object,
+    profile: T.object
   },
 
   handleClose: function (e) {
@@ -44,7 +45,7 @@ const TicketEdit = React.createClass({
   populateSPInfo: function (user) {
     let info = {};
     info.name = (user === 'SP') ? this.props.profile.name : '';
-    info.contact = (user === 'SP') ? this.props.profile.name : '';
+    info.contact = (user === 'SP') ? this.props.profile.contact : '';
     return info;
   },
 
