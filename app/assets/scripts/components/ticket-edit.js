@@ -40,11 +40,21 @@ const TicketEdit = React.createClass({
     this.props.onSubmit(data);
   },
 
+  // Populate the default SP info depending upon the user
+  populateSPInfo: function(user) {
+    let info = {};
+    info.name = (user === 'SP') ? this.props.profile.name : ""
+    info.contact = (user === 'SP') ? this.props.profile.name : ""
+    return info;
+  },
+
+
   render: function () {
     let roles = this.props.roles;
     let isAdmin = _.includes(roles, 'admin');
     let isSP = _.includes(roles, 'SP');
     let isIP = _.includes(roles, 'IP');
+    const SPinfo = isAdmin ? populateSPInfo('admin') : populateSPInfo('SP')
 
     return (
       // Use `key` here to force a form re-render once the async fetch of
@@ -152,7 +162,7 @@ const TicketEdit = React.createClass({
             : ''
           }
 
-          { isAdmin || isSP
+          { (isAdmin || isSP) && (this.props.existingTicket.sp_assigned_id !=== '')
             ? <div className='form__row'>
               <div className='form__group'>
                 <label className='form__label-dark' htmlFor='form-ticket_sp_name'>Service Provider Name for This Ticket</label>
@@ -163,7 +173,7 @@ const TicketEdit = React.createClass({
                   className='form__control form__control--medium'
                   name='ticket_sp_name'
                   ref={thisInput => { this.ticket_sp_name = thisInput; }}
-                  defaultValue={this.props.existingTicket.ticket_sp_name}
+                  defaultValue={(this.props.existingTicket.ticket_sp_name === "") ? SPinfo.name : this.props.existingTicket.ticket_sp_name}
                 />
               </div>
 
@@ -176,7 +186,7 @@ const TicketEdit = React.createClass({
                   className='form__control form__control--medium'
                   name='ticket_sp_contact'
                   ref={thisInput => { this.ticket_sp_contact = thisInput; }}
-                  defaultValue={this.props.existingTicket.ticket_sp_contact}
+                  defaultValue={(this.props.existingTicket.ticket_sp_contact === "") ? SPinfo.contact : this.props.existingTicket.ticket_sp_contact}
                 />
               </div>
             </div>
