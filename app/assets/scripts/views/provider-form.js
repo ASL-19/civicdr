@@ -297,7 +297,7 @@ var ProviderForm = React.createClass({
                       required={true}
                       value='agree_cop'
                     />
-                    <span className='form__option__text'>I have read and agree to the <a href="#" onClick={this.props.dispatch(displayCodeOfPractice())}>Code of Practice</a>.</span>
+                    <span className='form__option__text'>I have read and agree to the <a href="#" onClick={this.props.dispatch(displayCodeOfPractice())}>Code of Practice.</a></span>
                     <span className='form__option__ui'></span>
                   </label>
                 </div>
