@@ -595,7 +595,7 @@ export const displayCodeOfPractice = () => {
   return {type: DISPLAY_CODE_OF_PRACTICE};
 };
 
-export const partnerAgreement = () => {
+export const displayPartnerAgreement = () => {
   return {type: DISPLAY_PARTNER_AGREEMENT};
 };
 

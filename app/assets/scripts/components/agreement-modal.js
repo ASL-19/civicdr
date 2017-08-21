@@ -7,7 +7,7 @@ var AgreementModal = React.createClass({
     agreementType: React.PropTypes.string
   },
 
-  render: function () {
+  render: function() {
     const isCodeOfPractice = this.props.agreementType === 'codeOfPractice';
     return (
       <section className="modal modal--xxlarge agreement-modal">
@@ -380,24 +380,105 @@ var AgreementModal = React.createClass({
             : ''}
           {!isCodeOfPractice
             ? <div className="agreement__language">
-              <h1 className="agreement__title heading--small">
-                  Code Of Practice
+              <h1 className="agreement__title heading--xlarge">
+                  CiviCDR Partner Agreement
               </h1>
               <div className="agreement__content">
-                <p>
-                    This Code of Practice defines the Civil Society Center for
-                    Digital Resilience (CiviCDR) Information Handling Policy,
-                    Vulnerability Disclosure Policy, and Code of Conduct, as
-                    well as outlining the stakeholder expectations and
-                    responsibilities established in the Partner Agreement. This
-                    document is a statement of intent for the design,
-                    development and implementation of CiviCDR’s full scope of
-                    services. A limited scope of services is currently in
-                    operation, for which all principles here remain true.
-                </p>
                 <h2 className="agreement__title heading--small">
-                    Code Of Practice
+                    Expectations
                 </h2>
+                <ul>
+                  <li>On-boarding</li>
+                  <ul>
+                    <li>
+                        Partners will be assisted in reaching a baseline level
+                        of digital security and be brought through how to engage
+                        with the CiviCDR platform.
+                    </li>
+                  </ul>
+                  <li>Alerts</li>
+                  <ul>
+                    <li>
+                        Partners will receive alerts on threats and
+                        vulnerabilities specific to their community. These
+                        alerts will be non-technical, graded by level of
+                        urgency, and include easy-to-follow risk mitigation
+                        measures and remedies. Technical alerts will also be
+                        made available for partners’ IT teams. Partners will
+                        also receive monthly updates on general threats and
+                        vulnerabilities specific to their region and the
+                        software they use, also with easy-to-follow risk
+                        mitigation measures.
+                    </li>
+                  </ul>
+                  <li>Incident Response</li>
+                  <ul>
+                    <li>
+                        If a partner comes under digital attack CiviCDR will
+                        ensure they get the right help quickly by assisting with
+                        immediate response and connecting them to an appropriate
+                        Service Provider. Translation and and general assistance
+                        can also be provided.
+                    </li>
+                  </ul>
+                  <li>Prevention</li>
+                  <ul>
+                    <li>
+                        Partners will receive assistance in preventing digital
+                        security incidents.
+                    </li>
+                  </ul>
+                  <li>
+                      CiviCDR and the Service Providers it works with will keep
+                      partners’ data secure and adhere to the standards outlined
+                      in the Code of Practice.
+                  </li>
+                  <li>
+                      CiviCDR will take all operational decisions based on what
+                      benefits community of partner CSOs.
+                  </li>
+                </ul>
+
+                <h2 className="agreement__title heading--small">
+                    Responsibilities
+                </h2>
+                <ul>
+                  <li>
+                      Partners will read and agree to the CiviCDR Code of
+                      Practice.
+                  </li>
+                  <li>
+                      Partners will provide time to engage with CiviCDR
+                      on-boarding team. On-boardings will be tailored to suit
+                      each partner and time taken will be dependent on their
+                      needs and availability.
+                  </li>
+                  <li>
+                      Partners will read alerts when they are sent out, share
+                      them with all relevant team members (regional team and IT
+                      team), and take the recommended mitigation measures where
+                      deemed appropriate.
+                  </li>
+                  <li>
+                      Partners will make an effort to notify CiviCDR when they
+                      come under targeted attack - even if the attack failed or
+                      their own IT team was able to fix the issue - so as to
+                      help safeguard others in the community. What is considered
+                      a targeted attack will be defined with each partner during
+                      the on-boarding process.
+                  </li>
+                  <li>
+                      Partners will agree to CiviCDR sharing non-sensitive
+                      information about incidents in community-wide alerts in
+                      order to help prevent other partners avoid similar
+                      incidents.
+                  </li>
+                  <li>
+                      Partners will agree to share all relevant incident
+                      information privately with any partners who may be
+                      adversely affected by a specific attack.
+                  </li>
+                </ul>
               </div>
             </div>
             : ''}

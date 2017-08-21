@@ -7,6 +7,8 @@
 import React, { PropTypes as T } from 'react';
 import { connect } from 'react-redux';
 import formToObject from 'form-to-object';
+import AgreementModal from '../components/agreement-modal';
+
 import {
   languages,
   typesOfWork,
@@ -16,7 +18,10 @@ import {
 } from '../constants';
 import {
   createIpProfile,
-  fetchProfile
+  fetchProfile,
+  displayCodeOfPractice,
+  hideAgreements,
+  displayPartnerAgreement
 } from '../actions';
 
 import _ from 'lodash';
@@ -70,6 +75,14 @@ var PartnerForm = React.createClass({
       <div>
         <section className='inpage__body'>
           <div className='inner'>
+          <div className='inner'>
+            <div style={{display: this.props.agreement.isAgreementModalVisible ? 'block' : 'none'}}>
+              <AgreementModal
+                onClose={() => {
+                  this.props.dispatch(hideAgreements());
+                }}
+              />
+            </div>
             <h1 className='heading--small'>Create Partner Profile</h1>
             <form className='inpage__form' onSubmit={this.handleSubmit} ref={thisForm => { this.form = thisForm; }}>
 
@@ -253,6 +266,42 @@ var PartnerForm = React.createClass({
                 >
                 </textarea>
               </div>
+
+              {!isAdmin
+                ? <div className='form__group checkboxes-light form__group--large'>
+                  <label className='form__label-dark'>Code of Practice</label>
+                  <p className='form__help'>You must read and agree to the terms of CiviCDRs <a href="#" onClick={this.props.dispatch(displayCodeOfPractice())}>Code of Practice</a> to create an account on this platform.</p>
+                  <label className='form__option form__option--custom-checkbox' key='code-of-conduct'>
+                    <input
+                      type='checkbox'
+                      name='secure_channels'
+                      required={true}
+                      value='agree_cop'
+                    />
+                    <span className='form__option__text'>I have read and agree to the <a href="#" onClick={this.props.dispatch(displayCodeOfPractice())}>Code of Practice</a>.</span>
+                    <span className='form__option__ui'></span>
+                  </label>
+                </div>
+                : ''
+              }
+
+              {!isAdmin
+                ? <div className='form__group checkboxes-light form__group--large'>
+                  <label className='form__label-dark'>Partner Agreement</label>
+                  <p className='form__help'>You must read and agree to the terms of CiviCDRs <a href="#" onClick={this.props.dispatch(displayPartnerAgreement())}>Partner Agreement</a> to create an account on this platform.</p>
+                  <label className='form__option form__option--custom-checkbox' key='partner-agreement'>
+                    <input
+                      type='checkbox'
+                      name='secure_channels'
+                      required={true}
+                      value='agree_pa'
+                    />
+                    <span className='form__option__text'>I have read and agree to the <a href="#" onClick={this.props.dispatch(displayPartnerAgreement())}>Partner Agreement</a>.</span>
+                    <span className='form__option__ui'></span>
+                  </label>
+                </div>
+                : ''
+              }
 
               <footer className='form__footer'>
                 <ul className='form__actions'>
