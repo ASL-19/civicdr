@@ -8,6 +8,8 @@ import React, { PropTypes as T } from 'react';
 import { connect } from 'react-redux';
 import formToObject from 'form-to-object';
 import _ from 'lodash';
+import AgreementModal from '../components/agreement-modal';
+
 import {
   languages,
   serviceTypes,
@@ -18,7 +20,9 @@ import {
 
 import {
   createSpProfile,
-  fetchProfile
+  fetchProfile,
+  displayCodeOfPractice,
+  hideAgreements
 } from '../actions';
 
 // A form view to create new Service Providers
@@ -69,6 +73,14 @@ var ProviderForm = React.createClass({
       <div>
         <section className='inpage__body'>
           <div className='inner'>
+            <div style={{display: this.props.agreement.isAgreementModalVisible ? 'block' : 'none'}}>
+              <AgreementModal
+                onClose={() => {
+                  this.props.dispatch(hideAgreements());
+                }}
+              />
+            </div>
+
             <h1 className='heading--small'>Create Provider Profile</h1>
             <form className='inpage__form' onSubmit={this.handleSubmit} ref={thisForm => { this.form = thisForm; }}>
 
@@ -124,26 +136,26 @@ var ProviderForm = React.createClass({
 
               <div className='form__group'>
                 <label className='form__label-dark' htmlFor='form-email-notifications'>Would you like to receive email notifications for changes to ticket statuses or assignments?</label>
-                  <label className='form__option form__option--inline form__option--custom-radio'>
-                    <input
-                      type='radio'
-                      name='email_notification'
-                      required={true}
-                      value={true}
-                    />
-                    <span className='form__option__text'>Yes</span>
-                    <span className='form__option__ui'></span>
-                  </label>
-                  <label className='form__option form__option--inline form__option--custom-radio'>
-                    <input
-                      type='radio'
-                      name='email_notification'
-                      required={true}
-                      value={false}
-                    />
-                    <span className='form__option__text'>No</span>
-                    <span className='form__option__ui'></span>
-                  </label>
+                <label className='form__option form__option--inline form__option--custom-radio'>
+                  <input
+                    type='radio'
+                    name='email_notification'
+                    required={true}
+                    value={true}
+                  />
+                  <span className='form__option__text'>Yes</span>
+                  <span className='form__option__ui'></span>
+                </label>
+                <label className='form__option form__option--inline form__option--custom-radio'>
+                  <input
+                    type='radio'
+                    name='email_notification'
+                    required={true}
+                    value={false}
+                  />
+                  <span className='form__option__text'>No</span>
+                  <span className='form__option__ui'></span>
+                </label>
               </div>
 
               <div className='form__group'>
@@ -255,7 +267,7 @@ var ProviderForm = React.createClass({
               {isAdmin
                 ? <div className='form__group'>
                   <label className='form__label-dark'>Rating</label>
-                    {[1, 2, 3, 4, 5].map(rating =>
+                  {[1, 2, 3, 4, 5].map(rating =>
                     <label key={rating} className="form__option form__option--inline form__option--custom-radio">
                       <input
                         type='radio'
@@ -269,6 +281,24 @@ var ProviderForm = React.createClass({
                       <span className="form__option__ui"></span>
                     </label>
                   )}
+                </div>
+                : ''
+              }
+
+              {!isAdmin
+                ? <div className='form__group checkboxes-light form__group--large'>
+                  <label className='form__label-dark'>Secure Channels</label>
+                  <p className='form__help'>You must read and agree to the terms of CiviCDRs <a href="#" onClick={this.props.dispatch(displayCodeOfPractice())}>Code of Practice</a> to create an account on this platform.</p>
+                  <label className='form__option form__option--custom-checkbox' key='code-of-conduct'>
+                    <input
+                      type='checkbox'
+                      name='secure_channels'
+                      required={true}
+                      value='agree_cop'
+                    />
+                    <span className='form__option__text'>I have read and agree to the <a href="#" onClick={this.props.dispatch(displayCodeOfPractice())}>Code of Practice</a>.</span>
+                    <span className='form__option__ui'></span>
+                  </label>
                 </div>
                 : ''
               }

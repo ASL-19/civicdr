@@ -335,3 +335,25 @@
     }
   }
 }
+
+/* Agreement Modal
+   ========================================================================== */
+.agreement-modal {
+  text-align: center;
+}
+
+.agreement__title {
+  font-weight: $base-font-bold;
+}
+
+.agreement__content {
+  @include column(12/12);
+  margin-bottom: $global-spacing * 2;
+  @include media(medium-up){
+    @include column(9/12);
+  }
+}
+
+.agreement__language {
+
+}
