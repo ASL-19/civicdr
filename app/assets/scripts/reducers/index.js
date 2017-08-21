@@ -11,7 +11,7 @@ import ticketSingle from './ticket-single';
 import implementingPartners from './implementing-partners';
 import threads from './threads';
 import errors from './errors';
-import agreements from './agreements';
+import agreement from './agreements';
 
 export const reducers = {
   tickets,
@@ -23,7 +23,7 @@ export const reducers = {
   threads,
   auth,
   errors,
-  agreements
+  agreement
 };
 
 export default combineReducers(Object.assign({}, reducers, {
