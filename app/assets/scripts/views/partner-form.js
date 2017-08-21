@@ -270,7 +270,7 @@ var PartnerForm = React.createClass({
               {!isAdmin
                 ? <div className='form__group checkboxes-light form__group--large'>
                   <label className='form__label-dark'>Code of Practice</label>
-                  <p className='form__help'>You must read and agree to the terms of CiviCDRs <a href="#" onClick={this.props.dispatch(displayCodeOfPractice())}>Code of Practice</a> to create an account on this platform.</p>
+                  <p className='form__help'>You must read and agree to the terms of CiviCDRs <a href="#" onClick={this.props.dispatch(displayCodeOfPractice)}>Code of Practice</a> to create an account on this platform.</p>
                   <label className='form__option form__option--custom-checkbox' key='code-of-conduct'>
                     <input
                       type='checkbox'
@@ -278,7 +278,7 @@ var PartnerForm = React.createClass({
                       required={true}
                       value='agree_cop'
                     />
-                    <span className='form__option__text'>I have read and agree to the <a href="#" onClick={this.props.dispatch(displayCodeOfPractice())}>Code of Practice</a>.</span>
+                    <span className='form__option__text'>I have read and agree to the <a href="#" onClick={this.props.dispatch(displayCodeOfPractice)}>Code of Practice</a>.</span>
                     <span className='form__option__ui'></span>
                   </label>
                 </div>
@@ -288,7 +288,7 @@ var PartnerForm = React.createClass({
               {!isAdmin
                 ? <div className='form__group checkboxes-light form__group--large'>
                   <label className='form__label-dark'>Partner Agreement</label>
-                  <p className='form__help'>You must read and agree to the terms of CiviCDRs <a href="#" onClick={this.props.dispatch(displayPartnerAgreement())}>Partner Agreement</a> to create an account on this platform.</p>
+                  <p className='form__help'>You must read and agree to the terms of CiviCDRs <a href="#" onClick={this.props.dispatch(displayPartnerAgreement)}>Partner Agreement</a> to create an account on this platform.</p>
                   <label className='form__option form__option--custom-checkbox' key='partner-agreement'>
                     <input
                       type='checkbox'
@@ -296,7 +296,7 @@ var PartnerForm = React.createClass({
                       required={true}
                       value='agree_pa'
                     />
-                    <span className='form__option__text'>I have read and agree to the <a href="#" onClick={this.props.dispatch(displayPartnerAgreement())}>Partner Agreement</a>.</span>
+                    <span className='form__option__text'>I have read and agree to the <a href="#" onClick={this.props.dispatch(displayPartnerAgreement)}>Partner Agreement</a>.</span>
                     <span className='form__option__ui'></span>
                   </label>
                 </div>
