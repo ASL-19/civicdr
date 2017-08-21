@@ -33,7 +33,8 @@ var PartnerForm = React.createClass({
   propTypes: {
     dispatch: T.func,
     roles: T.array,
-    router: T.object
+    router: T.object,
+    agreement: T.object
   },
 
   handleSubmit: function (e) {
@@ -74,7 +75,6 @@ var PartnerForm = React.createClass({
     return (
       <div>
         <section className='inpage__body'>
-          <div className='inner'>
           <div className='inner'>
             <div style={{display: this.props.agreement.isAgreementModalVisible ? 'block' : 'none'}}>
               <AgreementModal
@@ -135,26 +135,26 @@ var PartnerForm = React.createClass({
 
               <div className='form__group'>
                 <label className='form__label-dark' htmlFor='form-email-notifications'>Would you like to receive email notifications for changes to ticket statuses or assignments?</label>
-                  <label className='form__option form__option--inline form__option--custom-radio'>
-                    <input
-                      type='radio'
-                      name='email_notification'
-                      required={true}
-                      value={true}
-                    />
-                    <span className='form__option__text'>Yes</span>
-                    <span className='form__option__ui'></span>
-                  </label>
-                  <label className='form__option form__option--inline form__option--custom-radio'>
-                    <input
-                      type='radio'
-                      name='email_notification'
-                      required={true}
-                      value={false}
-                    />
-                    <span className='form__option__text'>No</span>
-                    <span className='form__option__ui'></span>
-                  </label>
+                <label className='form__option form__option--inline form__option--custom-radio'>
+                  <input
+                    type='radio'
+                    name='email_notification'
+                    required={true}
+                    value={true}
+                  />
+                  <span className='form__option__text'>Yes</span>
+                  <span className='form__option__ui'></span>
+                </label>
+                <label className='form__option form__option--inline form__option--custom-radio'>
+                  <input
+                    type='radio'
+                    name='email_notification'
+                    required={true}
+                    value={false}
+                  />
+                  <span className='form__option__text'>No</span>
+                  <span className='form__option__ui'></span>
+                </label>
               </div>
 
               <div className='checkboxes-light'>
@@ -321,7 +321,6 @@ var PartnerForm = React.createClass({
                   </li>
                 </ul>
               </footer>
-
             </form>
           </div>
         </section>
@@ -335,7 +334,8 @@ var PartnerForm = React.createClass({
 
 const mapStateToProps = (state, props) => {
   return {
-    roles: state.auth.roles
+    roles: state.auth.roles,
+    agreement: state.agreement
   };
 };
 

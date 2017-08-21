@@ -7,7 +7,7 @@ var AgreementModal = React.createClass({
     agreementType: React.PropTypes.string
   },
 
-  render: function() {
+  render: function () {
     const isCodeOfPractice = this.props.agreementType === 'codeOfPractice';
     return (
       <section className="modal modal--xxlarge agreement-modal">

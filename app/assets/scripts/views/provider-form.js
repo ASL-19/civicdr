@@ -32,7 +32,8 @@ var ProviderForm = React.createClass({
   propTypes: {
     dispatch: T.func,
     roles: T.array,
-    router: T.object
+    router: T.object,
+    agreement: T.object
   },
 
   handleSubmit: function (e) {
@@ -336,7 +337,8 @@ var ProviderForm = React.createClass({
 const mapStateToProps = (state, props) => {
   return {
     provider: state.serviceProviders.list.find(sp => sp.id === props.params.providerID),
-    roles: state.auth.roles
+    roles: state.auth.roles,
+    agreement: state.agreement
   };
 };
 
