@@ -4,7 +4,8 @@ import React from 'react';
 var AgreementModal = React.createClass({
   propTypes: {
     onClose: React.PropTypes.func,
-    agreementType: React.PropTypes.string
+    agreementType: React.PropTypes.string,
+    isCodeOfPractice: React.PropTypes.bool
   },
 
   render: function () {

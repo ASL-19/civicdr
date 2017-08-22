@@ -339,7 +339,7 @@
 /* Agreement Modal
    ========================================================================== */
 .agreement-modal {
-  text-align: center;
+  text-align: left;
 }
 
 .agreement__title {
@@ -347,11 +347,7 @@
 }
 
 .agreement__content {
-  @include column(12/12);
   margin-bottom: $global-spacing * 2;
-  @include media(medium-up){
-    @include column(9/12);
-  }
 }
 
 .agreement__language {

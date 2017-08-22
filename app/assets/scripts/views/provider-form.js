@@ -79,6 +79,7 @@ var ProviderForm = React.createClass({
                 onClose={() => {
                   this.props.dispatch(hideAgreements());
                 }}
+                isCodeOfPractice={this.props.agreement.isCodeOfPractice}
               />
             </div>
 
@@ -287,7 +288,7 @@ var ProviderForm = React.createClass({
               }
 
               {!isAdmin
-                ? <div className='form__group checkboxes-light form__group--large'>
+                ? <div className='form__group checkboxes-light form__group--xlarge'>
                   <label className='form__label-dark'>Code of Practice</label>
                   <p className='form__help'>You must read and agree to the terms of CiviCDRs <a href="#" onClick={() => this.props.dispatch(displayCodeOfPractice())}>Code of Practice</a> to create an account on this platform.</p>
                   <label className='form__option form__option--custom-checkbox' key='code-of-conduct'>
@@ -297,8 +298,8 @@ var ProviderForm = React.createClass({
                       required={true}
                       value='agree_cop'
                     />
-               <span className='form__option__text'>I have read and agree to the <a href="#" onClick={() => this.props.dispatch(displayCodeOfPractice())}>Code of Practice.</a></span>
-                    <span className='form__option__ui'></span>
+                  <span className='form__option__text'>I have read and agree to the <a href="#" onClick={() => this.props.dispatch(displayCodeOfPractice())}>Code of Practice.</a></span>
+                  <span className='form__option__ui'></span>
                   </label>
                 </div>
                 : ''
