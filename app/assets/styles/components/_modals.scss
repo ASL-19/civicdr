@@ -353,3 +353,7 @@
   text-align: left;
   margin-bottom: $global-spacing * 2;
 }
+
+.form__group--medium .form__option.agreement_checkboxes {
+  width: 80%;
+}

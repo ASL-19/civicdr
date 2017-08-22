@@ -269,15 +269,15 @@ var PartnerForm = React.createClass({
               </div>
 
               {!isAdmin
-                ? <div className='form__group checkboxes-light form__group--large'>
+                ? <div className='form__group agreement_checkboxes checkboxes-light form__group--medium'>
                   <label className='form__label-dark'>Code of Practice</label>
                <p className='form__help'>You must read and agree to the terms of CiviCDRs <a href="#" onClick={() => this.props.dispatch(displayCodeOfPractice())}>Code of Practice</a> to create an account on this platform.</p>
                   <label className='form__option form__option--custom-checkbox' key='code-of-conduct'>
                     <input
                       type='checkbox'
-                      name='secure_channels'
+                      name='code_of_practice'
                       required={true}
-                      value='agree_cop'
+                      value='agreed'
                     />
                <span className='form__option__text'>I have read and agree to the <a href="#" onClick={() => this.props.dispatch(displayCodeOfPractice())}>Code of Practice</a>.</span>
                     <span className='form__option__ui'></span>
@@ -287,16 +287,16 @@ var PartnerForm = React.createClass({
               }
 
               {!isAdmin
-                ? <div className='form__group checkboxes-light form__group--large'>
+                ? <div className='form__group agreement_checkboxes checkboxes-light form__group--medium'>
                   <label className='form__label-dark'>Partner Agreement</label>
                <p className='form__help'>You must read and agree to the terms of CiviCDRs <a href="#" onClick={() => this.props.dispatch(displayPartnerAgreement())}>Partner Agreement</a> to create an account on this platform.</p>
                   <label className='form__option form__option--custom-checkbox' key='partner-agreement'>
                     <input
                       type='checkbox'
-                      name='secure_channels'
+                      name='partner_agreement'
                       required={true}
-                      value='agree_pa'
-                    />
+                      value='agreed'
+               />
                <span className='form__option__text'>I have read and agree to the <a href="#" onClick={() => this.props.dispatch(displayPartnerAgreement())}>Partner Agreement</a>.</span>
                     <span className='form__option__ui'></span>
                   </label>
