@@ -82,10 +82,12 @@ var App = React.createClass({
         </main>
         <PageFooter
           className={c({hidden})}
-          partnerAgreement={() => {
+          partnerAgreement={(e) => {
+            e.preventDefault();
             this.props.dispatch(displayPartnerAgreement());
           }}
-          codeOfPractice={() => {
+          codeOfPractice={(e) => {
+            e.preventDefault();
             this.props.dispatch(displayCodeOfPractice());
           }}
         />
