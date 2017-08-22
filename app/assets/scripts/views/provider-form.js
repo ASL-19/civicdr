@@ -8,7 +8,6 @@ import React, { PropTypes as T } from 'react';
 import { connect } from 'react-redux';
 import formToObject from 'form-to-object';
 import _ from 'lodash';
-import AgreementModal from '../components/agreement-modal';
 
 import {
   languages,
@@ -21,8 +20,7 @@ import {
 import {
   createSpProfile,
   fetchProfile,
-  displayCodeOfPractice,
-  hideAgreements
+  displayCodeOfPractice
 } from '../actions';
 
 // A form view to create new Service Providers
@@ -32,8 +30,7 @@ var ProviderForm = React.createClass({
   propTypes: {
     dispatch: T.func,
     roles: T.array,
-    router: T.object,
-    agreement: T.object
+    router: T.object
   },
 
   handleSubmit: function (e) {
@@ -74,15 +71,6 @@ var ProviderForm = React.createClass({
       <div>
         <section className='inpage__body'>
           <div className='inner'>
-            <div style={{display: this.props.agreement.isAgreementModalVisible ? 'block' : 'none'}}>
-              <AgreementModal
-                onClose={() => {
-                  this.props.dispatch(hideAgreements());
-                }}
-                agreementType={this.props.agreement.agreementType}
-              />
-            </div>
-
             <h1 className='heading--small'>Create Provider Profile</h1>
             <form className='inpage__form' onSubmit={this.handleSubmit} ref={thisForm => { this.form = thisForm; }}>
 
@@ -338,8 +326,7 @@ var ProviderForm = React.createClass({
 const mapStateToProps = (state, props) => {
   return {
     provider: state.serviceProviders.list.find(sp => sp.id === props.params.providerID),
-    roles: state.auth.roles,
-    agreement: state.agreement
+    roles: state.auth.roles
   };
 };
 

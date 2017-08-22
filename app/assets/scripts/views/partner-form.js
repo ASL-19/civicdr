@@ -7,7 +7,6 @@
 import React, { PropTypes as T } from 'react';
 import { connect } from 'react-redux';
 import formToObject from 'form-to-object';
-import AgreementModal from '../components/agreement-modal';
 
 import {
   languages,
@@ -16,11 +15,11 @@ import {
   notificationPrefs,
   notificationLang
 } from '../constants';
+
 import {
   createIpProfile,
   fetchProfile,
   displayCodeOfPractice,
-  hideAgreements,
   displayPartnerAgreement
 } from '../actions';
 
@@ -33,8 +32,7 @@ var PartnerForm = React.createClass({
   propTypes: {
     dispatch: T.func,
     roles: T.array,
-    router: T.object,
-    agreement: T.object
+    router: T.object
   },
 
   handleSubmit: function (e) {
@@ -76,14 +74,6 @@ var PartnerForm = React.createClass({
       <div>
         <section className='inpage__body'>
           <div className='inner'>
-            <div style={{display: this.props.agreement.isAgreementModalVisible ? 'block' : 'none'}}>
-              <AgreementModal
-                onClose={() => {
-                  this.props.dispatch(hideAgreements());
-                }}
-                agreementType={this.props.agreement.agreementType}
-              />
-            </div>
             <h1 className='heading--small'>Create Partner Profile</h1>
             <form className='inpage__form' onSubmit={this.handleSubmit} ref={thisForm => { this.form = thisForm; }}>
 
@@ -271,7 +261,7 @@ var PartnerForm = React.createClass({
               {!isAdmin
                 ? <div className='form__group checkboxes-light form__group--medium'>
                   <label className='form__label-dark'>Code of Practice</label>
-               <p className='form__help'>You must read and agree to the terms of CiviCDRs <a href="#" onClick={() => this.props.dispatch(displayCodeOfPractice())}>Code of Practice</a> to create an account on this platform.</p>
+                  <p className='form__help'>You must read and agree to the terms of CiviCDRs <a href="#" onClick={() => this.props.dispatch(displayCodeOfPractice())}>Code of Practice</a> to create an account on this platform.</p>
                   <label className='form__option agreement_checkboxes form__option--custom-checkbox' key='code-of-conduct'>
                     <input
                       type='checkbox'
@@ -279,7 +269,7 @@ var PartnerForm = React.createClass({
                       required={true}
                       value={true}
                     />
-               <span className='form__option__text'>I have read and agree to the <a href="#" onClick={() => this.props.dispatch(displayCodeOfPractice())}>Code of Practice</a>.</span>
+                    <span className='form__option__text'>I have read and agree to the <a href="#" onClick={() => this.props.dispatch(displayCodeOfPractice())}>Code of Practice</a>.</span>
                     <span className='form__option__ui'></span>
                   </label>
                 </div>
@@ -335,8 +325,7 @@ var PartnerForm = React.createClass({
 
 const mapStateToProps = (state, props) => {
   return {
-    roles: state.auth.roles,
-    agreement: state.agreement
+    roles: state.auth.roles
   };
 };
 

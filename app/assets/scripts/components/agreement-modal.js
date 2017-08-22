@@ -1,10 +1,10 @@
 'use strict';
-import React from 'react';
+import React, {PropTypes as T} from 'react';
 
 var AgreementModal = React.createClass({
   propTypes: {
-    onClose: React.PropTypes.func,
-    agreementType: React.PropTypes.string
+    onClose: T.func,
+    agreementType: T.string
   },
 
   render: function () {
