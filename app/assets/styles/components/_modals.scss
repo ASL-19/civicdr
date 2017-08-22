@@ -338,7 +338,11 @@
 
 /* Agreement Modal
    ========================================================================== */
-.agreement-modal {
+.agreement-modal .modal__inner {
+  width: 100%;
+  @include media(medium-up) {
+    width: 55%;
+  }
 }
 
 .agreement__title {
@@ -348,11 +352,4 @@
 .agreement__content {
   text-align: left;
   margin-bottom: $global-spacing * 2;
-  @include media(medium-up) {
-    width: 75%;
-  }
-}
-
-.agreement__language {
-
 }
