@@ -288,18 +288,18 @@ var ProviderForm = React.createClass({
               }
 
               {!isAdmin
-                ? <div className='form__group agreement_checkboxes checkboxes-light form__group--medium'>
+                ? <div className='form__group checkboxes-light form__group--medium'>
                   <label className='form__label-dark'>Code of Practice</label>
                   <p className='form__help'>You must read and agree to the terms of CiviCDRs <a href="#" onClick={() => this.props.dispatch(displayCodeOfPractice())}>Code of Practice</a> to create an account on this platform.</p>
-                  <label className='form__option form__option--custom-checkbox' key='code-of-conduct'>
+                  <label className='form__option agreement_checkboxes form__option--custom-checkbox' key='code-of-conduct'>
                     <input
                       type='checkbox'
                       name='code_of_practice'
                       required={true}
-                      value='agreed'
+                      value={true}
                     />
-                  <span className='form__option__text'>I have read and agree to the <a href="#" onClick={() => this.props.dispatch(displayCodeOfPractice())}>Code of Practice.</a></span>
-                  <span className='form__option__ui'></span>
+                    <span className='form__option__text'>I have read and agree to the <a href="#" onClick={() => this.props.dispatch(displayCodeOfPractice())}>Code of Practice.</a></span>
+                    <span className='form__option__ui'></span>
                   </label>
                 </div>
                 : ''
