@@ -69,14 +69,14 @@ var App = React.createClass({
               }}
               errorMsg={this.props.error.errorMsg}
             />
-            <div style={{display: this.props.agreement.isAgreementModalVisible ? 'block' : 'none'}}>
-              <AgreementModal
-                onClose={() => {
-                  this.props.dispatch(hideAgreements());
-                }}
-                agreementType={this.props.agreement.agreementType}
-              />
-            </div>
+          </div>
+          <div style={{display: this.props.agreement.isAgreementModalVisible ? 'block' : 'none'}}>
+            <AgreementModal
+              onClose={() => {
+                this.props.dispatch(hideAgreements());
+              }}
+              agreementType={this.props.agreement.agreementType}
+            />
           </div>
           {this.props.children}
         </main>

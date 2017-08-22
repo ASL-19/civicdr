@@ -32,7 +32,7 @@ var PageFooter = React.createClass({
                   className="browse-menu__item"
                   onClick={this.props.partnerAgreement}
                   href="#">
-                     Code Of Practice
+                     Partner Agreement
                 </a>
               </li>
               <li className="browse-menu__item sub-nav-block-wrapper">
