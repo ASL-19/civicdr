@@ -7,7 +7,7 @@ import {
 } from '../actions';
 
 export const initialState = {
-  type: null,
+  agreementType: null,
   isAgreementModalVisible: false
 };
 
@@ -16,14 +16,15 @@ export default (state = initialState, action) => {
 
   switch (action.type) {
     case DISPLAY_CODE_OF_PRACTICE:
-      newState.type = 'codeOfPractice';
+      newState.agreementType = 'codeOfPractice';
       newState.isAgreementModalVisible = true;
       break;
     case DISPLAY_PARTNER_AGREEMENT:
-      newState.type = 'partnerAgreement';
+      newState.agreementType = 'partnerAgreement';
       newState.isAgreementModalVisible = true;
       break;
     case HIDE_AGREEMENTS:
+      newState.agreementType = null;
       newState.isAgreementModalVisible = false;
       break;
   }

@@ -79,7 +79,7 @@ var ProviderForm = React.createClass({
                 onClose={() => {
                   this.props.dispatch(hideAgreements());
                 }}
-                isCodeOfPractice={this.props.agreement.isCodeOfPractice}
+                agreementType={this.props.agreement.agreementType}
               />
             </div>
 

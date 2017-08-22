@@ -81,7 +81,7 @@ var PartnerForm = React.createClass({
                 onClose={() => {
                   this.props.dispatch(hideAgreements());
                 }}
-                isCodeOfPractice={this.props.agreement.isCodeOfPractice}
+                agreementType={this.props.agreement.agreementType}
               />
             </div>
             <h1 className='heading--small'>Create Partner Profile</h1>
