@@ -57,10 +57,17 @@ export const HIDE_AGREEMENTS = 'HIDE_AGREEMENTS';
 // Generic error checker
 
 export const checkErrors = (err) => {
-  // If the error is a 401 redirect the user to the unauthorized page.
-  if (err.response.status === 401) {
-    return {type: ADD_ERROR, error: 'unauthorized', msg: 'You are not authorized to conduct that action. If you continue to get errors try logging out and back in.'};
-  } else {
+  try {
+    // If the error is a 401 redirect the user to the unauthorized page.
+    if (err.response.status === 401) {
+      return {type: ADD_ERROR, error: 'unauthorized', msg: 'You are not authorized to conduct that action. If you continue to get errors try logging out and back in.'};
+    } else {
+      // Check non-401 API errors
+      return {type: ADD_ERROR, error: 'unknown'};
+    }
+  } catch (e) {
+    // Checks non API based errors here
+    console.log(err);
     return {type: ADD_ERROR, error: 'unknown'};
   }
 };

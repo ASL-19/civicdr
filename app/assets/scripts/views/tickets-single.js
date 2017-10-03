@@ -49,7 +49,7 @@ var TicketSingle = React.createClass({
   propTypes: {
     params: T.object,
     routeParams: T.object,
-    ticket: T.object,
+    thisTicket: T.object,
     dispatch: T.func,
     roles: T.array,
     groupings: T.array,
@@ -57,7 +57,8 @@ var TicketSingle = React.createClass({
     implementingPartners: T.array,
     threads: T.array,
     router: T.object,
-    profile: T.object
+    profile: T.object,
+    tickets: T.object
   },
 
   getInitialState: function () {
@@ -83,11 +84,19 @@ var TicketSingle = React.createClass({
   },
 
   onAddGrouping: function (groupingID) {
-    this.props.dispatch(addGroupingToTicket(this.props.ticket.id, groupingID));
+    this.props.dispatch(addGroupingToTicket(this.props.thisTicket.ticket.id, groupingID));
   },
 
   render: function () {
-    const ticket = this.props.ticket;
+    const ticket = this.props.thisTicket.ticket;
+    // An editable version of the ticket is used because we could not get the
+    // edit component to update the ticket value asynchronously as it is known
+    let editableTicket = this.props.tickets.tickets
+      .find(ticket => ticket.id === this.props.routeParams.ticketId) || {};
+    // merge updated ticket data into editable ticket
+    if (ticket !== undefined) {
+      editableTicket = Object.assign(editableTicket, ticket);
+    }
     const hasProfile = Boolean(this.props.profile.name);
     const serviceProvider = this.props.serviceProviders
       .find(sp => sp.id === ticket.sp_assigned_id);
@@ -107,9 +116,13 @@ var TicketSingle = React.createClass({
               onSubmit={(updatedTicket) => {
                 this.props.dispatch(putTicket(ticket.id, updatedTicket));
                 this.setState({isEditTicketModalVisible: false});
+                // This updates the ticket state with the edited ticket values.
+                this.props.dispatch(fetchTicketSingle(ticket.id));
+                // Sync editable ticket value up to current ticket
+                editableTicket = Object.assign(editableTicket, ticket);
               }}
               roles={roles}
-              existingTicket={ticket}
+              existingTicket={editableTicket}
               implementingPartners={this.props.implementingPartners}
               profile={hasProfile ? this.props.profile : {}}
             />
@@ -131,7 +144,7 @@ var TicketSingle = React.createClass({
                 <CreateEditGrouping
                   onClose={() => { this.setState({isCreateGroupingModalVisible: false}); }}
                   onSubmit={(title, description) => {
-                    this.props.dispatch(createGroupingAndAddToTicket(title, description, this.props.ticket.id));
+                    this.props.dispatch(createGroupingAndAddToTicket(title, description, ticket.id));
                     this.setState({isCreateGroupingModalVisible: false});
                   }}
                 />
@@ -141,7 +154,7 @@ var TicketSingle = React.createClass({
                 <DeleteModal
                   onClose={() => { this.setState({isDeleteModalVisible: false}); }}
                   onSubmit={(title, description) => {
-                    this.props.dispatch(deleteTickets([this.props.ticket.id], () => this.props.router.push('/')));
+                    this.props.dispatch(deleteTickets([ticket.id], () => this.props.router.push('/')));
                     this.setState({isDeleteModalVisible: false});
                   }}
                 />
@@ -297,15 +310,16 @@ var TicketSingle = React.createClass({
 // Connect functions
 
 const mapStateToProps = (state, ownProps) => {
-  const { groupings, ticketSingle, serviceProviders, implementingPartners, threads } = state;
-  return Object.assign({}, ticketSingle, {
+  return {
     roles: state.auth.roles,
-    serviceProviders: serviceProviders.list,
-    groupings: groupings.groupings,
-    implementingPartners: implementingPartners.list,
-    threads: threads.threads,
-    profile: state.auth.profile
-  });
+    serviceProviders: state.serviceProviders.list,
+    groupings: state.groupings.groupings,
+    implementingPartners: state.implementingPartners.list,
+    threads: state.threads.threads,
+    profile: state.auth.profile,
+    thisTicket: state.ticketSingle,
+    tickets: state.tickets
+  };
 };
 
 export default connect(mapStateToProps)(TicketSingle);
